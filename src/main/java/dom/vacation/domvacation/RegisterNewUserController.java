@@ -38,7 +38,7 @@ public class RegisterNewUserController {
             if (passwordTextField.getText().matches(repeatPasswordTextField.getText())) {
                 String cEmail = (emailBox.getText());
                 DBUtils.connectToDB(DBUtils.clientTableSQL);
-                if (!DBUtils.userExist(cEmail)) {
+                if (!DBUtils.userExistByEmail(cEmail)) {
                     if (!isEmailCorrect(cEmail)) {
                         error_label.setText("Email should be format xxxxx@xxxxx.xxx");
                         error_label.setTextFill(Color.RED);
@@ -47,8 +47,6 @@ public class RegisterNewUserController {
                         DBUtils.addUser(emailBox.getText(), passwordTextField.getText(), logintextField.getText());
                         Page.goBackToLoginPage();
                     }
-
-
                 } else {
                     error_label.setText("User exist with this email");
                     error_label.setTextFill(Color.RED);

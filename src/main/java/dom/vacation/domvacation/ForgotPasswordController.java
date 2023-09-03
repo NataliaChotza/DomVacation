@@ -40,7 +40,7 @@ public class ForgotPasswordController{
 
         try {
             DBUtils.connectToDB(DBUtils.clientTableSQL);
-            if (DBUtils.userExist(email)){
+            if (DBUtils.userExistByEmail(email)){
                 Parent root = FXMLLoader.load(getClass().getResource("emailSent.fxml"));
                 Scene scene = new Scene(root);
                 Stage emailSentStage = new Stage();

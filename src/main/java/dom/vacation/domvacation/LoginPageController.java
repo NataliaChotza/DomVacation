@@ -37,12 +37,13 @@ public class LoginPageController {
     @FXML
     private void loginToApp() {
         wrongDataLabel.setVisible(false);
-        String userName = loginTextField.getText();
+        String email = loginTextField.getText();
         String password = passwordField.getText();
         try {
             DBUtils.connectToDB(DBUtils.clientTableSQL);
-            if(DBUtils.userExist(userName)) {
-                if (DBUtils.correctLogInData(userName, password)) {
+            if(DBUtils.userExistByEmail(email)) {
+                wrongDataLabel.setVisible(false);
+                if (DBUtils.correctLogInData(email, password)) {
                     Parent root = FXMLLoader.load(getClass().getResource("mainPage.fxml"));
                     Scene scene = new Scene(root);
                     main_stage = new Stage();
