@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<SplitPane dividerPositions="0.1230031948881789" orientation="VERTICAL" pickOnBounds="false" prefHeight="180.0" prefWidth="330.0" style="-fx-background-color: #171151; -fx-background-radius: 5px; -fx-border-radius: 5px;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dom.vacation.domvacation.EmailSentController">
+    <items>
+        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="55.0" prefWidth="300.0" text="Book Your Flight" textFill="WHITE">
+            <font>
+                <Font name="Comic Sans MS Bold" size="24.0" />
+            </font>
+        </Label>
+        <AnchorPane prefHeight="185.0" prefWidth="445.0" style="-fx-background-color: #171151; -fx-background-radius: 5px; -fx-border-radius: 5px;" SplitPane.resizableWithParent="false">
+            <Pane layoutX="26.0" layoutY="21.0" prefHeight="93.0" prefWidth="276.0" style="-fx-background-color: F1F1F1; -fx-border-radius: 5px; -fx-background-radius: 5px;">
+            <children>
+               <TextField alignment="CENTER" editable="false" prefHeight="94.0" prefWidth="277.0" text="Email sent. Check your inbox.">
+                  <font>
+                     <Font name="Comic Sans MS" size="18.0" />
+                  </font>
+               </TextField>
+               <Label fx:id="emailLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="11.0" layoutY="62.0" prefHeight="17.0" prefWidth="259.0" />
+            </children>
+            </Pane>
+        </AnchorPane>
+    </items>
+</SplitPane>

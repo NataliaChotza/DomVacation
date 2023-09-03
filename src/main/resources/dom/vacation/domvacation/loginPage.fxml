@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<SplitPane dividerPositions="0.1230031948881789" orientation="VERTICAL" pickOnBounds="false" prefHeight="443.0" prefWidth="465.0" style="-fx-background-color: #171151; -fx-background-radius: 5px; -fx-border-radius: 5px;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dom.vacation.domvacation.LoginPageController">
+  <items>
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="55.0" prefWidth="300.0" text="Book Your Flight" textFill="WHITE">
+         <font>
+            <Font name="Comic Sans MS Bold" size="24.0" />
+         </font>
+      </Label>
+    <AnchorPane prefHeight="358.0" prefWidth="301.0" style="-fx-background-color: #171151; -fx-background-radius: 5px; -fx-border-radius: 5px;" SplitPane.resizableWithParent="false">
+         <children>
+            <VBox alignment="CENTER" layoutX="85.0" layoutY="54.0" maxHeight="1000.0" maxWidth="800.0" minHeight="242.0" minWidth="224.0" prefHeight="268.0" prefWidth="300.0" spacing="10.0" style="-fx-background-color: F1F1F1; -fx-border-radius: 5px; -fx-background-radius: 5px;">
+               <children>
+                  <TextField fx:id="loginTextField" alignment="CENTER" maxHeight="50.0" maxWidth="150.0" minHeight="50.0" minWidth="150.0" promptText="EMAIL">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <font>
+                        <Font name="Comic Sans MS" size="12.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor>
+                  </TextField>
+                  <PasswordField fx:id="passwordField" alignment="CENTER" maxHeight="50.0" maxWidth="150.0" minHeight="50.0" minWidth="150.0" promptText="PASSWORD">
+                     <font>
+                        <Font name="Comic Sans MS" size="12.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor>
+                  </PasswordField>
+                  <Label fx:id="wrongDataLabel" visible="false" />
+                  <Button fx:id="loginButton" mnemonicParsing="false" onAction="#loginToApp" prefHeight="33.0" prefWidth="63.0" style="-fx-background-color: #171151; -fx-border-color: F1F1F1; -fx-background-radius: 5px; -fx-border-radius: 5px;" text="LOGIN" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="Comic Sans MS Bold" size="12.0" />
+                     </font>
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Label fx:id="fpLabel" onMouseClicked="#forgotPassword" text="Forgot password?" textFill="RED">
+                     <font>
+                        <Font name="Comic Sans MS" size="12.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Label>
+                  <Label fx:id="register_label" alignment="CENTER_RIGHT" contentDisplay="RIGHT" onMouseClicked="#register_new_user" style="-fx-text-fill: #FF1111;" text="Sign up" textFill="RED">
+                     <font>
+                        <Font name="Comic Sans MS" size="12.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Label>
+               </children>
+            </VBox>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="165.0" layoutY="16.0" prefHeight="25.0" prefWidth="139.0" text="My Account" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Comic Sans MS Bold" size="18.0" />
+               </font>
+            </Label>
+         </children>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+      </AnchorPane>
+  </items>
+</SplitPane>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<SplitPane dividerPositions="0.10151006711409395" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="443.0" prefWidth="435.0" style="-fx-background-color: #171151; -fx-background-radius: 5px; -fx-border-radius: 5px;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dom.vacation.domvacation.ForgotPasswordController">
+  <items>
+      <Label prefHeight="37.0" prefWidth="204.0" text="Book Your Flight" textFill="WHITE">
+         <font>
+            <Font name="Comic Sans MS Bold" size="24.0" />
+         </font>
+      </Label>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="354.0" prefWidth="535.0">
+         <children>
+            <Pane layoutX="52.0" layoutY="24.0" prefHeight="328.0" prefWidth="328.0" style="-fx-background-color: F1F1F1; -fx-border-radius: 5px; -fx-background-radius: 5px;">
+               <children>
+                  <VBox layoutX="27.0" layoutY="124.0" prefHeight="152.0" prefWidth="275.0" style="-fx-background-color: F1F1F1; -fx-background-radius: 5px; -fx-border-radius: 5px;">
+                     <children>
+                        <TextField fx:id="emailField" alignment="CENTER" prefHeight="47.0" prefWidth="233.0" promptText="email">
+                           <font>
+                              <Font name="Comic Sans MS Bold" size="12.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="TEXT" />
+                           </cursor>
+                        </TextField>
+                        <Label fx:id="errorLabel" prefHeight="17.0" prefWidth="268.0" textAlignment="CENTER" visible="false" />
+                        <Button fx:id="resetPasswordButton" mnemonicParsing="false" onAction="#resetPassword" prefHeight="29.0" prefWidth="258.0" style="-fx-background-color: F1F1F1; -fx-border-color: #171151; -fx-background-radius: 5px; -fx-border-radius: 5px;" text="RESET PASSWORD" textFill="#171151" />
+                        <Button fx:id="go_back_button" alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="323.0" mnemonicParsing="false" onAction="#goBackToLoginPage" prefHeight="33.0" prefWidth="63.0" style="-fx-background-color: #171151; -fx-border-color: F1F1F1; -fx-border-radius: 5px; -fx-background-radius: 5px;" text="Back" textFill="WHITE">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                           <effect>
+                              <DropShadow />
+                           </effect>
+                           <font>
+                              <Font name="Comic Sans MS Bold" size="12.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </VBox>
+                  <Label layoutX="14.0" layoutY="29.0" text="Forgot your password ?" textFill="#171151">
+                     <font>
+                        <Font name="Comic Sans MS Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label ellipsisString="0" layoutX="14.0" layoutY="78.0" text="Please enter your email and press button below" textFill="#171151">
+                     <font>
+                        <Font name="Comic Sans MS Bold" size="13.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+         </children></AnchorPane>
+  </items>
+</SplitPane>

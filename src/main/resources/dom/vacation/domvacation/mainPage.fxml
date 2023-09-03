@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<SplitPane dividerPositions="0.08005164622336994" orientation="VERTICAL" pickOnBounds="false" prefHeight="519.0" prefWidth="611.0" style="-fx-background-color: A1A1A1A1;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dom.vacation.domvacation.MainPageController">
+  <items>
+      <AnchorPane prefHeight="35.0" prefWidth="609.0" style="-fx-background-color: A2A1A1;">
+         <children>
+            <ToolBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="32.0" prefWidth="608.0" style="-fx-background-color: F1F1F1;">
+               <items>
+                  <MenuButton alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="27.0" prefWidth="100.0" style="-fx-background-radius: 5px; -fx-border-radius: 5px; -fx-background-color: F1F1F1;" text="My Account">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="My profile" />
+                        <MenuItem fx:id="logOut" mnemonicParsing="false" onAction="#logOut" text="Log out" />
+                        <Menu fx:id="menuButton_currency" mnemonicParsing="false" onShowing="#setCurrency" text="Currency">
+                          <items>
+                            <MenuItem mnemonicParsing="false" text="Currency" />
+                          </items>
+                        </Menu>
+                     </items>
+                     <font>
+                        <Font name="Comic Sans MS Bold" size="11.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </MenuButton>
+                  <Label fx:id="currency_label" text="EUR">
+                     <font>
+                        <Font name="Comic Sans MS Bold" size="12.0" />
+                     </font>
+                  </Label>
+               </items>
+            </ToolBar>
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="476.0" prefWidth="609.0" style="-fx-background-color: #171151;">
+         <children>
+            <Pane layoutX="41.0" layoutY="82.0" prefHeight="269.0" prefWidth="525.0" style="-fx-background-color: F1F1F1; -fx-border-radius: 5px; -fx-background-radius: 5px;">
+               <children>
+                  <Label fx:id="error_label" layoutX="66.0" layoutY="218.0" prefHeight="17.0" prefWidth="268.0" text="brak_tekstu" textAlignment="CENTER" visible="false" />
+                  <Button fx:id="searchConnection_button" alignment="CENTER" contentDisplay="CENTER" layoutX="405.0" layoutY="196.0" mnemonicParsing="false" onAction="#searchConnection" prefHeight="43.0" prefWidth="99.0" style="-fx-background-color: #171151; -fx-background-radius: 5px; -fx-border-radius: 5px; -fx-border-color: F1F1F1;" text="Search" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <font>
+                        <Font name="Comic Sans MS Bold" size="14.0" />
+                     </font>
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                  </Button>
+                  <CheckBox fx:id="checkOneWay" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#getDate" prefHeight="32.0" prefWidth="85.0" text="One way">
+                     <font>
+                        <Font name="Comic Sans MS Bold" size="12.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </CheckBox>
+                  <Label layoutX="14.0" layoutY="53.0" prefHeight="20.0" prefWidth="46.0" style="-fx-background-radius: 5px; -fx-border-radius: 5px;" text="FROM">
+                     <font>
+                        <Font name="Comic Sans MS Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="labelDeparture" layoutX="14.0" layoutY="128.0" text="DEPARTURE">
+                     <font>
+                        <Font name="Comic Sans MS Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="16.0" layoutY="178.0" text="PASSENGERS">
+                     <font>
+                        <Font name="Comic Sans MS Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="label_error_from" layoutX="120.0" layoutY="78.0" prefHeight="17.0" prefWidth="130.0" textFill="#ef0404" />
+                  <DatePicker fx:id="departureDate" layoutX="120.0" layoutY="121.0" onAction="#getDate" prefHeight="32.0" prefWidth="130.0" promptText="Departure date">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></DatePicker>
+                  <Label fx:id="labelreturn" layoutX="286.0" layoutY="125.0" text="RETURN">
+                     <font>
+                        <Font name="Comic Sans MS Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <DatePicker fx:id="returnDate" layoutX="370.0" layoutY="116.0" onAction="#getDate" prefHeight="32.0" prefWidth="130.0" promptText="Return date">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></DatePicker>
+                  <Label fx:id="label_error_to" layoutX="370.0" layoutY="76.0" prefHeight="17.0" prefWidth="130.0" textFill="RED" />
+                  <TextField fx:id="textFieldFrom" layoutX="120.0" layoutY="47.0" onKeyTyped="#getAirportFrom" prefHeight="32.0" prefWidth="130.0" promptText="Search for a city">
+                     <font>
+                        <Font name="Comic Sans MS" size="12.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor>
+                  </TextField>
+                  <TextField fx:id="textFieldTo" layoutX="370.0" layoutY="47.0" onKeyTyped="#getAirportTo" prefHeight="32.0" prefWidth="130.0" promptText="Search for a city">
+                     <font>
+                        <Font name="Comic Sans MS" size="12.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor>
+                  </TextField>
+                  <Label layoutX="286.0" layoutY="54.0" prefHeight="18.0" prefWidth="32.0" text="TO">
+                     <font>
+                        <Font name="Comic Sans MS Bold Italic" size="12.0" />
+                     </font>
+                  </Label>
+                  <MenuButton layoutX="120.0" layoutY="171.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="57.0">
+                    <items>
+                      <MenuItem mnemonicParsing="false" text="Adults (15+)">
+                           <graphic>
+                              <Spinner fx:id="adultsSpinner" editable="true" prefHeight="25.0" prefWidth="50.0" />
+                           </graphic>
+                        </MenuItem>
+                      <MenuItem mnemonicParsing="false" text="Children(3-15)">
+                           <graphic>
+                              <Spinner fx:id="childrenSpinner" editable="true" prefHeight="25.0" prefWidth="47.0" />
+                           </graphic>
+                        </MenuItem>
+                        <MenuItem mnemonicParsing="false" text="Infants(0-3)">
+                           <graphic>
+                              <Spinner fx:id="infantsSpinner" editable="true" prefHeight="25.0" prefWidth="47.0" />
+                           </graphic>
+                        </MenuItem>
+                    </items>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </MenuButton>
+                  <ListView fx:id="list_view_from" layoutX="120.0" layoutY="85.0" onMouseClicked="#getClickedListViewItem" prefHeight="87.0" prefWidth="130.0" visible="false" />
+                  <ListView fx:id="list_view_to" layoutX="370.0" layoutY="86.0" onMouseClicked="#getClickedListViewItem" prefHeight="87.0" prefWidth="130.0" visible="false" />
+                  <Label fx:id="error_dep" layoutX="120.0" layoutY="108.0" prefHeight="17.0" prefWidth="17.0" />
+                  <Label fx:id="error_from" layoutX="123.0" layoutY="30.0" prefHeight="17.0" prefWidth="17.0" />
+                  <Label fx:id="error_to" layoutX="370.0" layoutY="30.0" prefHeight="17.0" prefWidth="17.0" />
+                  <Label fx:id="error_ret" layoutX="370.0" layoutY="100.0" prefHeight="17.0" prefWidth="17.0" />
+                  <Label fx:id="error_pass" layoutX="118.0" layoutY="153.0" prefHeight="17.0" prefWidth="17.0" />
+                  <Button fx:id="animationButton" layoutX="405.0" layoutY="198.0" mnemonicParsing="false" prefHeight="10.0" prefWidth="99.0" text="animation" visible="false" />
+               </children>
+            </Pane>
+            <Label layoutX="168.0" layoutY="14.0" text="Select your destination" textFill="WHITE">
+               <font>
+                  <Font name="Comic Sans MS Bold" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+  </items>
+</SplitPane>

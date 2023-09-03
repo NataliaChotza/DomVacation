@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<SplitPane dividerPositions="0.13977635782747602" orientation="VERTICAL" prefHeight="443.0" prefWidth="465.0" scaleShape="false" style="-fx-background-color: #171151;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dom.vacation.domvacation.RegisterNewUserController">
+  <items>
+      <Label alignment="CENTER" contentDisplay="TEXT_ONLY" prefHeight="55.0" prefWidth="300.0" text="Book Your Flight" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" SplitPane.resizableWithParent="false">
+         <graphic>
+            <ImageView blendMode="DARKEN" cache="true" fitHeight="62.0" fitWidth="80.0" nodeOrientation="RIGHT_TO_LEFT" opacity="0.25" smooth="false">
+               <image>
+                  <Image url="@flight.jpg" />
+               </image>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </ImageView>
+         </graphic>
+         <font>
+            <Font name="Comic Sans MS Bold" size="24.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="DISAPPEAR" />
+         </cursor>
+         <effect>
+         </effect>
+      </Label>
+      <AnchorPane prefHeight="443.0" prefWidth="465.0" style="-fx-background-color: #171151; -fx-background-radius: 5px; -fx-border-radius: 5px;" SplitPane.resizableWithParent="false">
+         <children>
+            <VBox alignment="CENTER" layoutX="94.0" layoutY="55.0" prefHeight="269.0" prefWidth="269.0" spacing="15.0" style="-fx-background-color: F1F1F1; -fx-border-radius: 5px; -fx-background-radius: 5px;">
+               <children>
+                  <TextField fx:id="logintextField" alignment="CENTER" prefHeight="34.0" prefWidth="209.0" promptText="login">
+                     <font>
+                        <Font name="Comic Sans MS" size="12.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor>
+                  </TextField>
+                  <TextField fx:id="emailBox" alignment="CENTER" prefHeight="34.0" prefWidth="209.0" promptText="email">
+                     <font>
+                        <Font name="Comic Sans MS" size="12.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor>
+                  </TextField>
+                  <PasswordField fx:id="passwordTextField" alignment="CENTER" prefHeight="34.0" prefWidth="209.0" promptText="password">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <font>
+                        <Font name="Comic Sans MS" size="12.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor>
+                  </PasswordField>
+                  <PasswordField fx:id="repeatPasswordTextField" alignment="CENTER" prefHeight="31.0" prefWidth="225.0" promptText="repeat password">
+                     <font>
+                        <Font name="Comic Sans MS" size="12.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor>
+                  </PasswordField>
+                  <Label fx:id="error_label" visible="false" />
+                  <Button fx:id="signUpButton" mnemonicParsing="false" onAction="#registerNewUser" prefHeight="33.0" prefWidth="63.0" style="-fx-border-radius: 5px; -fx-background-color: #171151; -fx-border-color: F1F1F1; -fx-background-radius: 5px;" text="Sign up" textFill="WHITE">
+                     <font>
+                        <Font name="Comic Sans MS Bold" size="12.0" />
+                     </font>
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </VBox>
+            <Button fx:id="go_back_button" alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="323.0" mnemonicParsing="false" onAction="#goBackToLoginPage" prefHeight="33.0" prefWidth="63.0" style="-fx-background-color: #171151; -fx-border-color: F1F1F1; -fx-border-radius: 5px; -fx-background-radius: 5px;" text="Back" textFill="WHITE">
+               <font>
+                  <Font name="Comic Sans MS Bold" size="12.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Label layoutX="197.0" layoutY="14.0" text="Sign up" textFill="WHITE">
+               <font>
+                  <Font name="Comic Sans MS Bold" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+  </items>
+   <cursor>
+      <Cursor fx:constant="HAND" />
+   </cursor>
+</SplitPane>
