@@ -1,6 +1,10 @@
 package Utils;
 
+import dom.vacation.domvacation.Airport;
+
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
 
@@ -12,6 +16,7 @@ public class DBUtils {
     private static String DB_USER = "root";
     static boolean matches = false;
     public static String clientTableSQL= "SELECT * FROM client";
+    public static String airportDataSQL = "SELECT city.name as 'city', airport.name as 'airport' FROM airport INNER JOIN city ON airport.id_airport=city.id_airport";
 
     static Logger logger= Logger.getLogger("DBUtilsLogger");
     public static void connectToDB(String sql) throws SQLException {
@@ -74,6 +79,19 @@ public class DBUtils {
             }catch (SQLException ex){
                 ex.printStackTrace();
             }
+    }
+    public static Map<String,String> getAirportData(){
+        logger.info("Retrieved data from airport table");
+        Map<String,String> airportMap = new HashMap<>();
+        try{
+            while(getRs().next()){
+                airportMap.put(getRs().getString("airport"),getRs().getString("city"));
+            }
+        }catch (SQLException ex){
+            ex.printStackTrace();
+        }
+
+        return airportMap;
     }
     public static Connection getCon(){
         return con;

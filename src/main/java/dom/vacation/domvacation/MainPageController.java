@@ -1,6 +1,8 @@
 package dom.vacation.domvacation;
 
 
+import Utils.DBUtils;
+import Utils.Page;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -11,6 +13,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 
+import javafx.scene.input.InputMethodEvent;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
@@ -18,8 +22,11 @@ import javafx.stage.Stage;
 
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.*;
+import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 public class MainPageController {
 
@@ -83,8 +90,13 @@ public class MainPageController {
     Flight flight = new Flight();
 
     static Stage logOutStage;
+    boolean is_from_field = false;
+    TextField text_field_destination;
+    Label label_error_destination = new Label();
+    static Logger logger = Logger.getLogger("MainPageControllerLogger");
     @FXML
     public void logOut() {
+        logger.info("Logged out from application");
         Parent root = null;
         try {
             root = FXMLLoader.load(Objects.requireNonNull(SearchPageController.class.getResource("logOut.fxml")));
@@ -102,7 +114,7 @@ public class MainPageController {
 
     @FXML
     public void setCurrency() {
-
+        logger.info("Set currency in application");
         ObservableList<MenuItem> menuItemList = FXCollections.observableArrayList();
         MenuItem pln = new MenuItem("PLN");
         MenuItem eur = new MenuItem("EUR");
@@ -126,9 +138,9 @@ public class MainPageController {
 
         }
     }
-
     @FXML
     private void getDate() {
+        logger.info("Get date ");
 
         if (checkOneWay.isSelected()) {
             // one datepicker
@@ -175,6 +187,7 @@ public class MainPageController {
 
     @FXML
     public void searchConnection() throws Exception {
+        logger.info("Start search connection animation");
         flight.getFlightInfo();
         SearchPageController.startAnimation();
         Parent root = null;
@@ -193,16 +206,6 @@ public class MainPageController {
         System.out.println("playing animation...");
 
     }
-
-
-
-    List<Airport> resultSet_List = new ArrayList<>();
-    String airport_code_from;
-    String airport_code_to;
-    String airport_code;
-    boolean is_from_field = false;
-    TextField text_field_destination;
-    Label label_error_destination = new Label();
 
     public void setListView_destination(ListView<Object> listView_destination){
         this.listView_destination=listView_destination;
@@ -223,13 +226,6 @@ public class MainPageController {
     public Label getLabel_error_destination(){
         return this.label_error_destination;
     }
-    public void setAirport_code(String airport_code){
-        this.airport_code=airport_code;
-    }
-    public String getAirport_code(){
-        return this.airport_code;
-    }
-
     public void getClickedListViewItem() {
         getListView_destination().setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -243,13 +239,6 @@ public class MainPageController {
 
                 System.out.println("This is selected value-> " + selected_item);
 
-                if (is_from_field) {
-                    System.out.println("from->: " + getAirport_code());
-                    flight.setAirport_code_from(getAirport_code());
-                } else {
-                    System.out.println("to->: " + getAirport_code());
-                    flight.setAirport_code_to(getAirport_code());
-                }
 
                 if (textFieldFrom.getText().matches(textFieldTo.getText())) {
                     getLabel_error_destination().setText("You can not travel\nfrom same place you take off");
@@ -260,86 +249,55 @@ public class MainPageController {
             }
         });
     }
+    public void getAirportName() {
+        try {
+            DBUtils.connectToDB(DBUtils.airportDataSQL);
+            Map<String, String> airportData = DBUtils.getAirportData();
+            getListView_destination().getItems().clear();
+
+            String cityName = getText_field_destination().getText().toLowerCase();
+            airportData.entrySet().stream()
+                    .filter(e -> e.getValue().toLowerCase().startsWith(cityName))
+                    .distinct()
+                    .forEach(e -> getListView_destination().getItems().add(e.getKey()));
+
+
+            if (!getListView_destination().isVisible())
+                getListView_destination().setVisible(true);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
 
     @FXML
     public void getAirportFrom() throws InterruptedException {
+        logger.info("Get data about airport from");
 
-        textFieldFrom.setOnKeyTyped(new EventHandler<>() {
+            setListView_destination(list_view_from);
+            setText_field_destination(textFieldFrom);
+            is_from_field = true;
 
-            @Override
-            public void handle(KeyEvent keyEvent) {
+            setLabel_error_destination(label_error_from);
+            getLabel_error_destination().setText("");
 
-                setListView_destination(list_view_from);
-                setText_field_destination(textFieldFrom);
-                is_from_field = true;
-                setLabel_error_destination(label_error_from);
-                setAirport_code(airport_code_from);
-                getLabel_error_destination().setText("");
-                //   connectToAPI(textFieldFrom.getText());
+            getAirportName();
 
-            }
-        });
     }
     @FXML
     public void getAirportTo(){
-        textFieldTo.setOnKeyTyped(new EventHandler<>() {
-            @Override
-            public void handle(KeyEvent keyEvent) {
-                setListView_destination(list_view_to);
-                setText_field_destination(textFieldTo);
-                setLabel_error_destination(label_error_to);
-                is_from_field = false;
-                setAirport_code(airport_code_to);
-                getLabel_error_destination().setText("");
-                //  connectToAPI(textFieldTo.getText());
+        logger.info("Get data about airport to");
 
-            }
-        });
+        setListView_destination(list_view_to);
+        setText_field_destination(textFieldTo);
 
+        setLabel_error_destination(label_error_to);
+        getLabel_error_destination().setText("");
+
+        getAirportName();
 
     }
-/*
-    public void connectToAPI(String destination) {
-        System.out.println("connecting to API..");
-        System.out.println("user wrote->"+destination);
-        getListView_destination().getItems().clear();
-        resultSet_List.clear();
-        try {
-
-            response = Unirest.get("https://skyscanner44.p.rapidapi.com/autocomplete?query=" + destination)
-                    .header("X-RapidAPI-Key", "dc45c53089msh5e3bd8147301bdep1be3b9jsnb6a4c8486b54")
-                    .header("X-RapidAPI-Host", "skyscanner44.p.rapidapi.com")
-                    .asJson();
-            int iter = 0;
-            while(!response.getBody().getArray().isNull(iter)) {
-                setAirport_code(response.getBody().getArray().getJSONObject(iter).get("iata_code").toString());
-                String country = response.getBody().getArray().getJSONObject(iter).get("country").toString();
-                String city = response.getBody().getArray().getJSONObject(iter).get("city").toString();
-                String name = response.getBody().getArray().getJSONObject(iter).get("name").toString();
 
 
-                System.out.println("info->" + getAirport_code() + "" + country + "" + city + "" + name);
-                Airport airObj = new Airport(city, name, country, getAirport_code());
-
-                resultSet_List.add(airObj);
-                iter++;
-            }
-        } catch (Exception ex) {
-            if(ex.getMessage().contains("JSONException")){
-                System.out.println(ex.getMessage());
-            }
-            throw new RuntimeException(ex);
-        }
-        for (Airport s : resultSet_List){
-            getListView_destination().getItems().add(s.getAirportName());
-            System.out.println(s.getAirportName());
-        }
-        if(!getListView_destination().isVisible())
-            getListView_destination().setVisible(true);
-    }
-
-
-*/
 }
 
 
