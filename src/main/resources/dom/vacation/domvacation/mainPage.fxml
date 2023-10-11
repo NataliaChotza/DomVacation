@@ -40,7 +40,7 @@
       </AnchorPane>
       <AnchorPane prefHeight="476.0" prefWidth="609.0" style="-fx-background-color: #171151;">
          <children>
-            <Pane layoutX="41.0" layoutY="82.0" prefHeight="269.0" prefWidth="525.0" style="-fx-background-color: F1F1F1; -fx-border-radius: 5px; -fx-background-radius: 5px;">
+            <Pane layoutX="41.0" layoutY="82.0" onMouseClicked="#setSpinners" prefHeight="269.0" prefWidth="525.0" style="-fx-background-color: F1F1F1; -fx-border-radius: 5px; -fx-background-radius: 5px;">
                <children>
                   <Label fx:id="error_label" layoutX="66.0" layoutY="218.0" prefHeight="17.0" prefWidth="268.0" text="brak_tekstu" textAlignment="CENTER" visible="false" />
                   <Button fx:id="searchConnection_button" alignment="CENTER" contentDisplay="CENTER" layoutX="405.0" layoutY="196.0" mnemonicParsing="false" onAction="#searchConnection" prefHeight="43.0" prefWidth="99.0" style="-fx-background-color: #171151; -fx-background-radius: 5px; -fx-border-radius: 5px; -fx-border-color: F1F1F1;" text="Search" textAlignment="CENTER" textFill="WHITE" wrapText="true">
@@ -113,19 +113,19 @@
                         <Font name="Comic Sans MS Bold Italic" size="12.0" />
                      </font>
                   </Label>
-                  <MenuButton layoutX="120.0" layoutY="171.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="57.0">
+                  <MenuButton fx:id="items_spinner" layoutX="120.0" layoutY="171.0" mnemonicParsing="false" onMouseClicked="#setSpinners" prefHeight="32.0" prefWidth="57.0">
                     <items>
-                      <MenuItem mnemonicParsing="false" text="Adults (15+)">
+                      <MenuItem fx:id="item_adult" mnemonicParsing="false" text="Adults (15+)">
                            <graphic>
                               <Spinner fx:id="adultsSpinner" editable="true" prefHeight="25.0" prefWidth="50.0" />
                            </graphic>
                         </MenuItem>
-                      <MenuItem mnemonicParsing="false" text="Children(3-15)">
+                      <MenuItem fx:id="item_child" mnemonicParsing="false" text="Children(3-15)">
                            <graphic>
                               <Spinner fx:id="childrenSpinner" editable="true" prefHeight="25.0" prefWidth="47.0" />
                            </graphic>
                         </MenuItem>
-                        <MenuItem mnemonicParsing="false" text="Infants(0-3)">
+                        <MenuItem fx:id="item_infant" mnemonicParsing="false" text="Infants(0-3)">
                            <graphic>
                               <Spinner fx:id="infantsSpinner" editable="true" prefHeight="25.0" prefWidth="47.0" />
                            </graphic>

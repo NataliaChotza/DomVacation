@@ -3,6 +3,7 @@ package dom.vacation.domvacation;
 
 import Utils.DBUtils;
 import Utils.Page;
+import javafx.beans.property.ObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -64,10 +65,20 @@ public class MainPageController {
     @FXML
     ChoiceBox menuBox;
     @FXML
-    Spinner adultsSpinner;
+     MenuItem item_adult;
     @FXML
+    MenuItem item_child;
+    @FXML
+    MenuItem item_infant;
+    @FXML
+
+    Spinner adultsSpinner;
+
+    @FXML
+
     Spinner childrenSpinner;
     @FXML
+
     Spinner infantsSpinner;
     @FXML
     Label label_error_from;
@@ -77,7 +88,8 @@ public class MainPageController {
     ListView<Object> list_view_from = new ListView<>();
     @FXML
     ListView<Object> list_view_to = new ListView<>();
-
+    @FXML
+    static MenuButton items_spinner;
     ListView<Object> listView_destination = new ListView<>();
 
     @FXML
@@ -94,6 +106,7 @@ public class MainPageController {
     TextField text_field_destination;
     Label label_error_destination = new Label();
     static Logger logger = Logger.getLogger("MainPageControllerLogger");
+
     @FXML
     public void logOut() {
         logger.info("Logged out from application");
@@ -101,7 +114,7 @@ public class MainPageController {
         try {
             root = FXMLLoader.load(Objects.requireNonNull(SearchPageController.class.getResource("logOut.fxml")));
             setLogOutStage();
-            Scene scene= new Scene(root);
+            Scene scene = new Scene(root);
             logOutStage.setScene(scene);
             logOutStage.show();
 
@@ -138,6 +151,7 @@ public class MainPageController {
 
         }
     }
+
     @FXML
     private void getDate() {
         logger.info("Get date ");
@@ -177,11 +191,12 @@ public class MainPageController {
     }
 
 
-    public static void setLogOutStage(){
-        logOutStage= new Stage();
+    public static void setLogOutStage() {
+        logOutStage = new Stage();
     }
-    public static void closeLogOutStage(){
-         logOutStage.close();
+
+    public static void closeLogOutStage() {
+        logOutStage.close();
     }
 
 
@@ -207,25 +222,31 @@ public class MainPageController {
 
     }
 
-    public void setListView_destination(ListView<Object> listView_destination){
-        this.listView_destination=listView_destination;
+    public void setListView_destination(ListView<Object> listView_destination) {
+        this.listView_destination = listView_destination;
 
     }
-    public ListView<Object> getListView_destination(){
+
+    public ListView<Object> getListView_destination() {
         return this.listView_destination;
     }
-    public void setText_field_destination(TextField text_field_destination){
-        this.text_field_destination=text_field_destination;
+
+    public void setText_field_destination(TextField text_field_destination) {
+        this.text_field_destination = text_field_destination;
     }
-    public TextField getText_field_destination(){
+
+    public TextField getText_field_destination() {
         return this.text_field_destination;
     }
-    public void setLabel_error_destination(Label label_error_destination){
-        this.label_error_destination=label_error_destination;
+
+    public void setLabel_error_destination(Label label_error_destination) {
+        this.label_error_destination = label_error_destination;
     }
-    public Label getLabel_error_destination(){
+
+    public Label getLabel_error_destination() {
         return this.label_error_destination;
     }
+
     public void getClickedListViewItem() {
         getListView_destination().setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -249,6 +270,7 @@ public class MainPageController {
             }
         });
     }
+
     public void getAirportName() {
         try {
             DBUtils.connectToDB(DBUtils.airportDataSQL);
@@ -273,18 +295,19 @@ public class MainPageController {
     public void getAirportFrom() throws InterruptedException {
         logger.info("Get data about airport from");
 
-            setListView_destination(list_view_from);
-            setText_field_destination(textFieldFrom);
-            is_from_field = true;
+        setListView_destination(list_view_from);
+        setText_field_destination(textFieldFrom);
+        is_from_field = true;
 
-            setLabel_error_destination(label_error_from);
-            getLabel_error_destination().setText("");
+        setLabel_error_destination(label_error_from);
+        getLabel_error_destination().setText("");
 
-            getAirportName();
+        getAirportName();
 
     }
+
     @FXML
-    public void getAirportTo(){
+    public void getAirportTo() {
         logger.info("Get data about airport to");
 
         setListView_destination(list_view_to);
@@ -297,6 +320,13 @@ public class MainPageController {
 
     }
 
+
+    public void setSpinners() {
+        adultsSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0,5,0,1));
+        int adultsNumber = Integer.parseInt(adultsSpinner.getValue().toString());
+        childrenSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0,adultsNumber+1,0,1));
+        infantsSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0,adultsNumber,0,1));
+    }
 
 }
 
